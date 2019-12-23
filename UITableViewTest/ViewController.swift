@@ -11,16 +11,22 @@ class itemsModel: NSObject {
      
 }
 
-
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-
+var url = URL(string: "https://hr.nju.edu.cn/")!
+var request = URLRequest(url: url)
+var conf = URLSessionConfiguration.default
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
+{
     
+   
     var dataArray1:Array<String>?
     var titleArray:[String]?
     var imageArray:[UIImageView] = []
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
+        
+         request.httpMethod = "GET"
+        
         
         for _ in 0...3
         {
@@ -173,8 +179,47 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     
-    
-    
+//    func parseHRFile() {
+//           do {
+//       if let htmlDocument = htmlDocument {
+//           print("parsing html")
+//           let els: Elements = try htmlDocument.getElementsByClass("news_list")
+//           var index = 0
+//           for section:Element in els.array() {
+//               let titleElements = try section.getElementsByClass("news_title")
+//               let dateElements = try section.getElementsByClass("news_meta")
+//               let readNumElements = try section.getElementsByClass("news_meta1")
+//               var titles = [String]()
+//               var dates = [String]()
+//               var readNums = [String]()
+//               var urls = [String]()
+//               for titleElement in  titleElements {
+//                   var title = try titleElement.child(0).attr("title")
+//                   var url = try titleElement.child(0).attr("href")
+//                   titles.append(title)
+//                   urls.append(url)
+//               }
+//               for dateElement in dateElements {
+//                   dates.append(try dateElement.text())
+//               }
+//               for readNumElement in readNumElements {
+//                   readNums.append(try readNumElement.text())
+//               }
+//
+//               pageInfo.addSection(titles,dates,readNums,urls, to:index)
+//               index += 1
+//               //pageInfo.addRecord(recordText, toSection:pageInfo.hrNotifications)
+//           }
+//           print("parse Done")
+//           self.tableView.reloadData()
+//       }
+//   } catch Exception.Error(let type, let message){
+//       print(message)
+//   } catch {
+//       print("error")
+//   }
+//       }
+//
     
 //
 //    @IBOutlet weak var gifttableview: UITableView!
@@ -273,7 +318,51 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
 
 
-
+// func parseHRFile() {
+//        do {
+//            if let htmlDocument = htmlDocument {
+//                print("parsing html")
+//                let els: Elements = try htmlDocument.getElementsByClass("news_list")
+//                var index = 0
+//                for section:Element in els.array() {
+//                    let titleElements = try section.getElementsByClass("news_title")
+//                    //print(record)
+//                    //print(titles)
+//                    let dateElements = try section.getElementsByClass("news_meta")
+//                    let readNumElements = try section.getElementsByClass("news_meta1")
+//
+//                    var titles = [String]()
+//                    var dates = [String]()
+//                    var readNums = [String]()
+//                    var urls = [String]()
+//                    for titleElement in  titleElements {
+//                        var title = try titleElement.child(0).attr("title")
+//                        var url = try titleElement.child(0).attr("href")
+//                        titles.append(title)
+//                        urls.append(url)
+//                    }
+//                    for dateElement in dateElements {
+//                        dates.append(try dateElement.text())
+//                    }
+//                    for readNumElement in readNumElements {
+//                        readNums.append(try readNumElement.text())
+//                    }
+//
+//                    pageInfo.addSection(titles,dates,readNums,urls, to:index)
+//                    index += 1
+//                    //pageInfo.addRecord(recordText, toSection:pageInfo.hrNotifications)
+//                }
+//                print("parse Done")
+//                self.tableView.reloadData()
+//            }
+//        } catch Exception.Error(let type, let message){
+//            print(message)
+//        } catch {
+//            print("error")
+//        }
+//    }
+//    
+//}
 
 
 //
