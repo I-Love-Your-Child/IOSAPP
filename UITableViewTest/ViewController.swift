@@ -2,10 +2,20 @@
 
 import UIKit
 
+// 相当于数据模型model
+class itemsModel: NSObject {
+     
+    var cover_image_url = ""
+    var title  = ""
+    var likecount = ""
+     
+}
+
+
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     
-    var dataArray:Array<String>?
+    var dataArray1:Array<String>?
     var titleArray:[String]?
     var imageArray:[UIImageView] = []
     override func viewDidLoad() {
@@ -19,9 +29,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
 
         
-        dataArray = Array<String>()
+        dataArray1 = Array<String>()
         for _ in 0...3 {
-            dataArray?.append("Label")
+            dataArray1?.append("Label")
         }
         titleArray = ["人事通知","人事新闻","公示公告","招聘信息"]
         let tableView = UITableView(frame: self.view.frame, style: .grouped)
@@ -34,11 +44,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.dataSource = self
 //        tableView.isEditing = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
@@ -46,15 +56,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //设置列表有多少行
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray!.count
+        return dataArray1!.count
     }
     //设置每行数据的数据载体Cell视图
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //获取到载体Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId", for: indexPath)
-        cell.textLabel?.text = dataArray![indexPath.row]
-        let model = dataArray![indexPath.row]
-         cell.accessoryView = imageArray[indexPath.row]
+        cell.textLabel?.text = dataArray1![indexPath.row]
+//        let model = dataArray1![indexPath.row]
+//         cell.accessoryView = imageArray[indexPath.row]
 
 //        //对cell进行设置
 //        cell.contentView = imageArray[indexPath.row]
@@ -160,6 +170,116 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 //        return 50
 //    }
+    
+    
+    
+    
+    
+    
+//
+//    @IBOutlet weak var gifttableview: UITableView!
+//
+//    // 数据源
+//    var dataArray = [itemsModel]()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        gifttableview.delegate = self
+//        gifttableview.dataSource = self
+//
+//        self.DownLoadData()
+//
+//        // Do any additional setup after loading the view.
+//
+//    }
+//
+//    // MARK: 下载解析数据
+//    func DownLoadData() -> Void {
+//
+//        Alamofire.request(.GET, "http://api.liwushuo.com/v2/channels/104/items?ad=2&gender=2&generation=2&limit=20&offset=0").responseJSON {
+//            (response)   in
+//
+//            // 有错误就打印错误，没有就解析数据
+//            if let Error = response.result.error
+//            {
+//               print(Error)
+//            }
+//            else if let jsonresult = response.result.value {
+//                // 用 SwiftyJSON 解析数据
+//                let JSOnDictory = JSON(jsonresult )
+//                let data =  JSOnDictory["data"]["items"].array
+//                for dataDic in  data!
+//                {
+//
+//                    let model =  itemsModel()
+//                    //  ?? 这个符号，我怕有初学者忘记了的提醒一下，A ?? B  这是一个 NIL合并运算符，它的作用是如果 A 不是NIL 就返回前面可选类型参数 A 的确定值， 如果 A 是NIL 就返回后面 B 的值！A和B之间类型的注意点我就不说了，忘记了去看书，，哈哈哈
+//
+//                    model.cover_image_url = dataDic["cover_image_url"].string ?? ""
+//                    model.title =  dataDic["title"].string ?? ""
+//
+//                    let  numString = String(format:"%d",dataDic["likes_count"].intValue ?? 0)
+//                    model.likecount = numString
+//                    self.dataArray.append(model)
+//
+//                }
+//
+//                self.gifttableview.reloadData()
+//
+//                //print(jsonresult)
+//
+//            }
+//        }
+//    }
+//
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//        return self.dataArray.count
+//
+//    }
+//
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//
+//        let cell:giftTabelViewcell = tableView .dequeueReusableCellWithIdentifier("Gifsayidentifile") as! giftTabelViewcell
+//        let model = self.dataArray[indexPath.row]
+//        cell.likeNumberLabel.text = model.likecount
+//
+//        // 这个就是用到 Kingfisher
+//        cell.backGroundImage.kf_setImageWithURL(NSURL(string: model.cover_image_url)!)
+//        return cell
+//
+//    }
+//
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//
+//        print(indexPath.row)
+//
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
+//
+//
+//    /*
+//    // MARK: - Navigation
+//
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+    }
+    
 
-}
 
+
+
+
+//
+//class giftSaycontroller: UIViewController {
+//
+//
+//
+//}
+//
