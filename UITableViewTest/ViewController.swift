@@ -52,9 +52,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //获取到载体Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId", for: indexPath)
-        cell.accessoryView = imageArray[indexPath.row]
         cell.textLabel?.text = dataArray![indexPath.row]
         let model = dataArray![indexPath.row]
+         cell.accessoryView = imageArray[indexPath.row]
+
 //        //对cell进行设置
 //        cell.contentView = imageArray[indexPath.row]
 //        cell.iconView.image =
